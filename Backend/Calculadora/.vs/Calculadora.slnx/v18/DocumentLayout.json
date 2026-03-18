@@ -1,0 +1,123 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|c:\\users\\jonathan.zambrano\\desktop\\bootcamp\\vmt-bootcamp\\backend\\calculadora\\calculadora\\applications\\applications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|solutionrelative:calculadora\\applications\\applications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|c:\\users\\jonathan.zambrano\\desktop\\bootcamp\\vmt-bootcamp\\backend\\calculadora\\calculadora\\exceptiones\\divisionporceroexception .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|solutionrelative:calculadora\\exceptiones\\divisionporceroexception .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|c:\\users\\jonathan.zambrano\\desktop\\bootcamp\\vmt-bootcamp\\backend\\calculadora\\calculadora\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|solutionrelative:calculadora\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|c:\\users\\jonathan.zambrano\\desktop\\bootcamp\\vmt-bootcamp\\backend\\calculadora\\calculadora\\exceptiones\\operacioninvalidaexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|solutionrelative:calculadora\\exceptiones\\operacioninvalidaexception.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|c:\\users\\jonathan.zambrano\\desktop\\bootcamp\\vmt-bootcamp\\backend\\calculadora\\calculadora\\interfaz\\iapplications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2573D3B8-2622-4173-A52B-98559ECE004C}|Calculadora\\Calculadora.csproj|solutionrelative:calculadora\\interfaz\\iapplications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OperacionInvalidaException.cs",
+              "DocumentMoniker": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Exceptiones\\OperacionInvalidaException.cs",
+              "RelativeDocumentMoniker": "Calculadora\\Exceptiones\\OperacionInvalidaException.cs",
+              "ToolTip": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Exceptiones\\OperacionInvalidaException.cs",
+              "RelativeToolTip": "Calculadora\\Exceptiones\\OperacionInvalidaException.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T19:58:34.94Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Applications.cs",
+              "DocumentMoniker": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Applications\\Applications.cs",
+              "RelativeDocumentMoniker": "Calculadora\\Applications\\Applications.cs",
+              "ToolTip": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Applications\\Applications.cs",
+              "RelativeToolTip": "Calculadora\\Applications\\Applications.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:05:13.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Program.cs",
+              "RelativeDocumentMoniker": "Calculadora\\Program.cs",
+              "ToolTip": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Program.cs",
+              "RelativeToolTip": "Calculadora\\Program.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwCcAAAAwAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:03:48.002Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DivisionPorCeroException .cs",
+              "DocumentMoniker": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Exceptiones\\DivisionPorCeroException .cs",
+              "RelativeDocumentMoniker": "Calculadora\\Exceptiones\\DivisionPorCeroException .cs",
+              "ToolTip": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Exceptiones\\DivisionPorCeroException .cs",
+              "RelativeToolTip": "Calculadora\\Exceptiones\\DivisionPorCeroException .cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T19:53:59.541Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IApplications.cs",
+              "DocumentMoniker": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Interfaz\\IApplications.cs",
+              "RelativeDocumentMoniker": "Calculadora\\Interfaz\\IApplications.cs",
+              "ToolTip": "C:\\Users\\jonathan.zambrano\\Desktop\\Bootcamp\\vmt-bootcamp\\Backend\\Calculadora\\Calculadora\\Interfaz\\IApplications.cs",
+              "RelativeToolTip": "Calculadora\\Interfaz\\IApplications.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-18T17:06:05.959Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 1313,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
