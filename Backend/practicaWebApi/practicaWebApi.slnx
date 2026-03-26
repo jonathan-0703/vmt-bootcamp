@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="practica.Shared/practica.Shared.csproj" />
+  <Project Path="practicaApplication/practica.Application.csproj" />
+  <Project Path="practicaWebApi/practicaWebApi.csproj" />
+</Solution>

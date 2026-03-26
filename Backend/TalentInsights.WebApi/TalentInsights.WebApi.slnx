@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="TalentInsights.Application/TalentInsights.Application.csproj" />
+  <Project Path="TalentInsights.WebApi/TalentInsights.WebApi.csproj" />
+  <Project Path="TalentInsing.Shared/TalentInsing.Shared.csproj" />
+</Solution>
