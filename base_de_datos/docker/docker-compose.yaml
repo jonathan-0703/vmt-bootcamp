@@ -1,17 +1,20 @@
+version: "3.9"
+
 services:
-  sql:
+  sqlserver:
     image: mcr.microsoft.com/mssql/server:2022-latest
-    #container_name: sqlserver2022
+    container_name: sqlserver-container
+    restart: always
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "MyStrongPass123!"
     ports:
       - "1433:1433"
-    environment:
-      - ACCEPT_EULA= Y
-      - MSSQL_SA_PASSWORD= Admin@123
-      - MSSQL_PID=Express
     volumes:
-      - sqlserverdata:/var/opt/mssql
+      - sql_data:/var/opt/mssql
+
 volumes:
-  sqlserverdata:
+  sql_data:
     # Comandos útiles:
     # Levantar los contenedores en segundo plano:
     #   docker-compose up -d

@@ -1,4 +1,4 @@
-@TalentInsights.WebApi_HostAddress = http://localhost:5051
+@TalentInsights.WebApi_HostAddress = http://localhost:5007
 
 GET {{TalentInsights.WebApi_HostAddress}}/weatherforecast/
 Accept: application/json

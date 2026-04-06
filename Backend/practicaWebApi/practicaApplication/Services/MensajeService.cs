@@ -3,12 +3,13 @@ using practica.Application.Interfaces.Services;
 using practica.Application.Models.DTOs;
 using practica.Application.Models.Request.Mensaje;
 using practica.Application.Models.Response;
+using practica.Domain.Database.SqlServe.Context;
 using TalentInsing.Shared;
 using TalentInsing.Shared.Helper;
 
 namespace practica.Application.Services
 {
-    public class MensajeService(Cache<MensajeDto> _cache) : IMensajeService
+    public class MensajeService(Cache<MensajeDto> _cache, WhatsappProyectoFinalContext _context) : IMensajeService
     {
         public GenericResponse<MensajeDto> Create(CreatedMensajeRequest model)
         {

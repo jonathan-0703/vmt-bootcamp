@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="practicaStartup.Domain/practicaStartup.Domain.csproj" />
+  <Project Path="practicaStartup/practicaStartup.csproj" />
+</Solution>

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="Persistence\SqlServer\Repositories\" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\TalentInsights.Domain\TalentInsights.Domain.csproj" />
   </ItemGroup>
 

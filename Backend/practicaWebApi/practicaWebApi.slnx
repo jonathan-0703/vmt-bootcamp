@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="practica.Domain/practica.Domain.csproj" Id="71a09e9e-33a9-4f9e-992d-dfa712362272" />
   <Project Path="practica.Shared/practica.Shared.csproj" />
   <Project Path="practicaApplication/practica.Application.csproj" />
   <Project Path="practicaWebApi/practicaWebApi.csproj" />

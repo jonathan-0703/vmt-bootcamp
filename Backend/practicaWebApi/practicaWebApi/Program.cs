@@ -1,5 +1,6 @@
 using practica.Application.Interfaces.Services;
 using practica.Application.Services;
+using practica.Domain.Database.SqlServe.Context;
 using TalentInsing.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,8 @@ builder.Services.AddControllers();
 
 builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IMensajeService, MensajeService>();
+
+builder.Services.AddSqlServer<WhatsappProyectoFinalContext>(builder.Configuration.GetConnectionString("Database"));
 
 builder.Services.AddSingleton(typeof(Cache<>));
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
