@@ -1,10 +1,11 @@
+using Serilog;
+using TalentInsights.WebApi.Extensions;
+using TalentInsights.WebApi.Middlewares;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
+builder.Host.UseSerilog();
+builder.Services.AddCore(builder.Configuration);
 
 var app = builder.Build();
 
@@ -14,8 +15,9 @@ if (app.Environment.IsDevelopment())
     app.MapOpenApi();
 }
 
-app.UseHttpsRedirection();
+app.UseMiddleware<ErrorHandlerMiddleware>();
 
+app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
