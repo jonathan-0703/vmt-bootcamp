@@ -18,12 +18,15 @@ GO
 -- ============================================================
 CREATE TABLE Collaborators (
     Id            UNIQUEIDENTIFIER   NOT NULL DEFAULT NEWID(),
+	Email		  NVARCHAR(100)      NOT NULL,
     FullName      NVARCHAR(150)      NOT NULL,
     GitlabProfile NVARCHAR(255)      NULL,
     Position      NVARCHAR(100)      NOT NULL,
+    Password      NVARCHAR(255)      NOT NULL,
     JoinedAt      DATETIME2          NOT NULL DEFAULT SYSUTCDATETIME(),
     IsActive      BIT                NOT NULL DEFAULT 1,
     CreatedAt     DATETIME2          NOT NULL DEFAULT SYSUTCDATETIME(),
+    DeletedAt     DATETIME2          NULL,
     UpdatedAt     DATETIME2          NOT NULL DEFAULT SYSUTCDATETIME(),
 
     CONSTRAINT PK_Collaborators PRIMARY KEY (Id)
@@ -378,4 +381,5 @@ CREATE INDEX IX_CollaboratorHistory_EntityType    ON CollaboratorHistory (Entity
 CREATE INDEX IX_Menus_ParentId                   ON Menus (ParentId);
 CREATE INDEX IX_Menus_SortOrder                  ON Menus (SortOrder);
 CREATE INDEX IX_MenuPermissions_PermissionId     ON MenuPermissions (PermissionId);
-GO
+
+G

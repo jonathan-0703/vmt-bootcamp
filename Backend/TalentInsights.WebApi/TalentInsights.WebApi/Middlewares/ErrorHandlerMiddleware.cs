@@ -21,12 +21,16 @@ namespace TalentInsights.WebApi.Middlewares
             {
                 await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status400BadRequest));
             }
+            catch (UnauthorizedException exception)
+            {
+                await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status401Unauthorized));
+            }
             catch (Exception exception)
             {
                 var traceId = Guid.NewGuid();
-                var message = ResponseConstants.ERROR_UNEXPECTED(traceId.ToString());
+                var message = ResponseConstants.ErrorUnexpected(traceId.ToString());
 
-                logger.LogCritical("Se generó una excepción no controlada, con el traceId: {traceId}. Excepción: {exception}", traceId, exception);
+                logger.LogInformation("Se generó una excepción no controlada, con el traceId: {traceId}. Excepción: {exception}", traceId, exception);
 
                 await context.Response.WriteAsJsonAsync(ManageException(context, exception, StatusCodes.Status500InternalServerError, message));
             }

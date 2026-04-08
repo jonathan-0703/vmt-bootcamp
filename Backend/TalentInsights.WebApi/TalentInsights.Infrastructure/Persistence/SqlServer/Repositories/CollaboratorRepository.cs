@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using TalentInsights.Domain.Database.SqlServe.Context;
-using TalentInsights.Domain.Database.SqlServe.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using TalentInsights.Domain.Database.SqlServer.Context;
+using TalentInsights.Domain.Database.SqlServer.Entities;
+using TalentInsights.Domain.Interfaces.Repositories;
+
 
 namespace TalentInsights.Infrastructure.Persistence.SqlServer.Repositories
 {
@@ -36,6 +33,30 @@ namespace TalentInsights.Infrastructure.Persistence.SqlServer.Repositories
                 return await context.Collaborators.FirstOrDefaultAsync(x => x.Id == collaboratorId && x.DeletedAt == null);
             }
             catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<Collaborator?> Get(string email)
+        {
+            try
+            {
+                return await context.Collaborators.FirstOrDefaultAsync(x => x.Email == email && x.DeletedAt == null);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> HasCreated()
+        {
+            try
+            {
+                return await context.Collaborators.AnyAsync();
+            }
+            catch
             {
                 throw;
             }

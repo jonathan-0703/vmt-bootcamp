@@ -3,10 +3,10 @@ using TalentInsights.Application.Interfaces.Services;
 using TalentInsights.Application.Models.DTOs;
 using TalentInsights.Application.Models.Requests.Collaborator;
 using TalentInsights.Application.Models.Responses;
-using TalentInsights.Domain.Database.SqlServe.Entities;
+using TalentInsights.Domain.Database.SqlServer.Entities;
 
 using TalentInsights.Domain.Exceptions;
-
+using TalentInsights.Domain.Interfaces.Repositories;
 using TalentInsights.Shared.Constants;
 using TalentInsights.Shared.Helpers;
 
