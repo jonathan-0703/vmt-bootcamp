@@ -1,3 +1,4 @@
+using Scalar.AspNetCore;
 using Serilog;
 using TalentInsights.WebApi.Extensions;
 using TalentInsights.WebApi.Middlewares;
@@ -12,6 +13,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    app.MapScalarApiReference();
     app.MapOpenApi();
 }
 

@@ -2,14 +2,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
-using System.Text;
 using TalentInsights.Application.Helpers;
 using TalentInsights.Application.Interfaces.Services;
 using TalentInsights.Application.Services;
+using TalentInsights.Domain.Database.SqlServer;
 using TalentInsights.Domain.Database.SqlServer.Context;
 using TalentInsights.Domain.Exceptions;
 using TalentInsights.Domain.Interfaces.Repositories;
+using TalentInsights.Infrastructure.Persistence.SqlServer;
 using TalentInsights.Infrastructure.Persistence.SqlServer.Repositories;
+using TalentInsights.Shared;
 using TalentInsights.Shared.Constants;
 using TalentInsights.WebApi.Middlewares;
 
@@ -25,6 +27,9 @@ namespace TalentInsights.WebApi.Extensions
         {
             services.AddScoped<ICollaboratorService, CollaboratorService>();
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<ICacheService, CacheService>();
+            services.AddScoped<IEmailTemplateService, IEmailTemplateService>();
+            services.AddScoped<IAppService, AppService>();
         }
 
         /// <summary>
@@ -33,7 +38,30 @@ namespace TalentInsights.WebApi.Extensions
         /// <param name="services"></param>
         public static void AddRepositories(this IServiceCollection services)
         {
-            services.AddTransient<ICollaboratorRepository, CollaboratorRepository>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+            services.AddScoped<ICollaboratorRepository, CollaboratorRepository>();
+            services.AddScoped<IEmailTemplateRepository, EmailTemplateRepository>();
+            services.AddScoped<IRoleRepository, RoleRepository>();
+        }
+
+        public async static Task AddSMTP(this IServiceCollection services, IConfiguration configuration)
+        {
+            var host = configuration[ConfigurationConstants.SMTP_HOST]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_HOST));
+
+            var from = configuration[ConfigurationConstants.SMTP_FROM]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_FROM));
+
+            var port = Convert.ToInt32(configuration[ConfigurationConstants.SMTP_PORT] ?? "587");
+
+            var user = configuration[ConfigurationConstants.SMTP_USER]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_USER));
+
+            var password = configuration[ConfigurationConstants.SMTP_PASSWORD]
+                ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.SMTP_PASSWORD));
+
+            var smtp = new SMTP(host, from, port, user, password);
+            services.AddSingleton(smtp);
         }
 
 
@@ -43,6 +71,8 @@ namespace TalentInsights.WebApi.Extensions
         /// <param name="services"></param>
         public async static Task AddCore(this IServiceCollection services, IConfiguration configuration)
         {
+            await services.AddSMTP(configuration);
+
             services.AddControllers().ConfigureApiBehaviorOptions(options =>
             {
                 options.InvalidModelStateResponseFactory = (errorContext) =>
@@ -72,6 +102,8 @@ namespace TalentInsights.WebApi.Extensions
             services.AddLogging();
 
             services.AddAuth(configuration);
+
+            services.AddCache();
 
             await Initialize(services);
         }
@@ -103,11 +135,17 @@ namespace TalentInsights.WebApi.Extensions
 
         public async static Task Initialize(this IServiceCollection services)
         {
+            var templatesData = new EmailTemplateData();
+            services.AddSingleton(templatesData);
+
             var provider = services.BuildServiceProvider();
             var scope = provider.CreateAsyncScope();
 
             var collaboratorService = scope.ServiceProvider.GetRequiredService<ICollaboratorService>();
             await collaboratorService.CreateFirstUser();
+
+            var emailTemplateService = scope.ServiceProvider.GetRequiredService<IEmailTemplateService>();
+            await emailTemplateService.Init();
         }
 
         public static void AddAuth(this IServiceCollection services, IConfiguration configuration)
@@ -118,27 +156,17 @@ namespace TalentInsights.WebApi.Extensions
                 builder.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             }).AddJwtBearer(builder =>
             {
-                var issuer = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_ISSUER)
-                    ?? configuration[ConfigurationConstants.JWT_ISSUER]
-                    ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_ISSUER));
-
-                var audience = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_AUDIENCE)
-                    ?? configuration[ConfigurationConstants.JWT_AUDIENCE]
-                    ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_AUDIENCE));
-
-                var privateKey = Environment.GetEnvironmentVariable(ConfigurationConstants.JWT_PRIVATE_KEY)
-                    ?? configuration[ConfigurationConstants.JWT_PRIVATE_KEY]
-                    ?? throw new Exception(ResponseConstants.ConfigurationPropertyNotFound(ConfigurationConstants.JWT_PRIVATE_KEY));
+                var tokenConfiguration = TokenHelper.Configuration(configuration);
 
                 builder.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,
-                    ValidIssuer = issuer,
+                    ValidIssuer = tokenConfiguration.Issuer,
                     ValidateAudience = true,
-                    ValidAudience = audience,
+                    ValidAudience = tokenConfiguration.Audience,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(privateKey)),
+                    IssuerSigningKey = tokenConfiguration.SecurityKey,
                     ClockSkew = TimeSpan.Zero
                 };
 
@@ -152,6 +180,11 @@ namespace TalentInsights.WebApi.Extensions
             });
 
             services.AddAuthorization();
+        }
+
+        public static void AddCache(this IServiceCollection services)
+        {
+            services.AddMemoryCache();
         }
     }
 }
