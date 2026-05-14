@@ -1,0 +1,80 @@
+<div class="passengers">
+  <h2 class="title">Passengers</h2>
+
+  <!-- Acciones -->
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="loadPassengers()">
+      Cargar Passengers
+    </button>
+    <button type="button" class="btn btn-success" (click)="createPassenger()">
+      + Agregar Passenger
+    </button>
+  </div>
+
+  <!-- Tabla de datos -->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Nationality</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+        <tr *ngFor="let passenger of passengers()">
+          <td class="avatar-cell">
+            <img [src]="passenger.avatar" class="avatar" />
+          </td>
+          <td>{{ passenger.name }}</td>
+          <td>{{ passenger.email }}</td>
+          <td>{{ passenger.nationality }}</td>
+          <td class="actions-cell">
+            <div class="menu-container">
+              <!-- Botón 3 puntos -->
+              <button class="menu-btn" (click)="toggleMenu(passenger.id)">⋮</button>
+
+              <!-- Menú -->
+              <div class="menu" *ngIf="openMenuId === passenger.id">
+                <button type="button" (click)="loadPassengerDetails(passenger.id); closeMenu()">
+                  Ver
+                </button>
+
+                <button type="button" (click)="updatePassenger(passenger.id); closeMenu()">
+                  Editar
+                </button>
+
+                <button type="button" (click)="deletePassenger(passenger.id); closeMenu()">
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DETALLE -->
+
+  <div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <!-- Header -->
+      <div class="modal-header">
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      </div>
+      <!-- Body -->
+      <div class="modal-body" *ngIf="passengerDetails()">
+        <img [src]="passengerDetails()?.avatar" class="avatar-large" />
+        <p><b>ID:</b> {{ passengerDetails()?.id }}</p>
+        <p><b>Name:</b> {{ passengerDetails()?.name }}</p>
+        <p><b>Email:</b> {{ passengerDetails()?.email }}</p>
+        <p><b>Nationality:</b> {{ passengerDetails()?.nationality }}</p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div class="employees">
+  <h2 class="title">Employees</h2>
+
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="loadEmployees()">
+      Cargar Employees
+    </button>
+
+    <button type="button" class="btn btn-success" (click)="createEmployee()">
+      + Agregar Employee
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Avatar</th>
+          <th>Nombre</th>
+          <th>Posición</th>
+          <th>Email</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let emp of employees()">
+          <td class="avatar-cell">
+            <img [src]="emp.avatar" class="avatar" />
+          </td>
+
+          <td>{{ emp.name }}</td>
+          <td>{{ emp.position }}</td>
+          <td>{{ emp.email }}</td>
+
+          <td class="actions-cell">
+            <div class="menu-container">
+              <!-- Botón 3 puntos -->
+              <button type="button" class="menu-btn" (click)="toggleMenu(emp.id)">⋮</button>
+
+              <div class="menu" *ngIf="openMenuId === emp.id">
+                <button (click)="loadEmployeeById(emp.id); closeMenu()">Ver</button>
+                <button (click)="updateEmployee(emp); closeMenu()">Editar</button>
+                <button (click)="deleteEmployee(emp); closeMenu()">Eliminar</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" *ngIf="isModalOpen()">
+    <div class="modal">
+      <!-- Header -->
+      <div class="modal-header">
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body" *ngIf="employee()">
+        <img [src]="employee()?.avatar" class="avatar-large" />
+
+        <p><b>Nombre:</b> {{ employee()?.name }}</p>
+        <p><b>Email:</b> {{ employee()?.email }}</p>
+        <p><b>Teléfono:</b> {{ employee()?.phone }}</p>
+        <p><b>Departamento:</b> {{ employee()?.department }}</p>
+      </div>
+    </div>
+  </div>
+</div>

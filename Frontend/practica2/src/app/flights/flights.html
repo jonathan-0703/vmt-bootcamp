@@ -1,0 +1,76 @@
+<div class="flights">
+  <h2 class="title">Flights</h2>
+
+  <!-- Acciones -->
+
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="loadFlights()">Cargar Flights</button>
+    <button type="button" class="btn btn-success" (click)="createFlight()">+ Agregar Flight</button>
+  </div>
+
+  <!-- Tabla de datos -->
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Origin</th>
+          <th>Destination</th>
+          <th>Departure</th>
+          <th>Flight Number</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+
+      <!-- Cuerpo de la tabla -->
+      <tbody>
+        <tr *ngFor="let flight of flights()">
+          <td>{{ flight.origin }}</td>
+          <td>{{ flight.destination }}</td>
+          <td>{{ flight.departure }}</td>
+          <td>{{ flight.flightNumber }}</td>
+          <td class="actions-cell">
+            <div class="menu-container">
+              <!-- Botón 3 puntos -->
+              <button class="menu-btn" (click)="toggleMenu(flight.id)">⋮</button>
+
+              <!-- Menú -->
+              <div class="menu" *ngIf="openMenuId === flight.id">
+                <button type="button" (click)="loadFlightDetails(flight.id); closeMenu()">
+                  Ver
+                </button>
+
+                <button type="button" (click)="updateFlight(flight.id); closeMenu()">Editar</button>
+
+                <button type="button" (click)="deleteFlight(flight.id); closeMenu()">
+                  Eliminar
+                </button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DETALLE -->
+
+  <div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <!-- Header -->
+      <div class="modal-header">
+        <h3>Detalle Flight</h3>
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body" *ngIf="flightDetails()">
+        <p><b>Origin:</b> {{ flightDetails()?.origin }}</p>
+        <p><b>Destination:</b> {{ flightDetails()?.destination }}</p>
+        <p><b>Departure:</b> {{ flightDetails()?.departure }}</p>
+        <p><b>Flight Number:</b> {{ flightDetails()?.flightNumber }}</p>
+        <p><b>Price:</b> {{ flightDetails()?.price }}</p>
+        <p><b>ID:</b> {{ flightDetails()?.createdAt }}</p>
+      </div>
+    </div>
+  </div>
+</div>

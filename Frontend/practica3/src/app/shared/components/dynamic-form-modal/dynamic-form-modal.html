@@ -1,0 +1,27 @@
+<div class="modal-backdrop">
+  <div class="modal">
+    <h2>{{ title }}</h2>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field appearance="outline" class="full-width" *ngFor="let field of fields">
+        <mat-label>
+          {{ field.label }}
+        </mat-label>
+
+        <input matInput [type]="field.type" [formControlName]="field.key" />
+
+        <mat-error *ngIf="form.get(field.key)?.hasError('required')"> Campo requerido </mat-error>
+
+        <mat-error *ngIf="form.get(field.key)?.hasError('email')"> Correo inválido </mat-error>
+      </mat-form-field>
+
+      <div class="actions">
+        <button mat-button type="button" (click)="close.emit()">Cancelar</button>
+
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">
+          {{ mode === 'create' ? 'Crear' : 'Actualizar' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

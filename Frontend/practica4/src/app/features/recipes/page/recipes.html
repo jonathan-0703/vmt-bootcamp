@@ -1,0 +1,59 @@
+<div class="header">
+  <h2>Recipes</h2>
+
+  <button mat-flat-button color="primary" (click)="openCreateModal()">Crear Receta</button>
+</div>
+
+<!-- CARDS -->
+
+<div class="recipes-container">
+  <app-custom-card
+    *ngFor="let recipe of recipes()"
+    [id]="recipe.id"
+    [title]="recipe.name"
+    [subtitle]="recipe.description"
+    (details)="loadRecipeDetails($event)"
+    (edit)="openEditModal(recipe)"
+    (delete)="deleteRecipe($event)"
+  >
+  </app-custom-card>
+</div>
+
+<!-- DETAIL MODAL -->
+
+<div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button mat-icon-button class="close-btn" (click)="closeModal()">
+      <mat-icon> close </mat-icon>
+    </button>
+
+    <div class="modal-body" *ngIf="recipesDetails()">
+      <h2>
+        {{ recipesDetails()?.name }}
+      </h2>
+
+      <p>
+        <b>Country:</b>
+        {{ recipesDetails()?.country }}
+      </p>
+
+      <p>
+        <b>Description:</b>
+        {{ recipesDetails()?.description }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL -->
+
+<app-dynamic-form-modal
+  *ngIf="isFormOpen()"
+  [title]="formMode() === 'create' ? 'Nueva Receta' : 'Editar Receta'"
+  [mode]="formMode()"
+  [fields]="recipeFields"
+  [data]="selectedRecipe()"
+  (save)="saveRecipe($event)"
+  (close)="closeFormModal()"
+>
+</app-dynamic-form-modal>

@@ -1,0 +1,57 @@
+<div class="header">
+  <h2>ESTUDIANTES</h2>
+
+  <button mat-flat-button color="primary" (click)="openCreateModal()">+ Crear Estudiante</button>
+</div>
+
+<div class="students-container">
+  <app-custom-card
+    *ngFor="let student of students()"
+    [id]="student.id"
+    [image]="student.avatar"
+    [title]="student.name"
+    [subtitle]="student.email"
+    (details)="loadStudentDetails($event)"
+    (edit)="openEditModal(student)"
+    (delete)="deleteStudent($event)"
+  >
+  </app-custom-card>
+</div>
+
+<div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button mat-icon-button class="close-btn" (click)="closeModal()">
+      <mat-icon> close </mat-icon>
+    </button>
+
+    <div class="modal-body" *ngIf="studentDetails()">
+      <img [src]="studentDetails()?.avatar" class="avatar-large" />
+
+      <p>
+        <b>ID:</b>
+        {{ studentDetails()?.id }}
+      </p>
+
+      <p>
+        <b>Name:</b>
+        {{ studentDetails()?.name }}
+      </p>
+
+      <p>
+        <b>Email:</b>
+        {{ studentDetails()?.email }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<app-dynamic-form-modal
+  *ngIf="isFormOpen()"
+  [title]="formMode() === 'create' ? 'Nuevo Estudiante' : 'Editar Estudiante'"
+  [mode]="formMode()"
+  [fields]="studentFields"
+  [data]="selectedStudent()"
+  (save)="saveStudent($event)"
+  (close)="closeFormModal()"
+>
+</app-dynamic-form-modal>

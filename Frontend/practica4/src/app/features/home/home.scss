@@ -1,0 +1,154 @@
+.hero-container {
+  /* Ocupa el alto total de la pantalla menos el navbar (asumiendo que el nav mide 72px) */
+  height: calc(100vh - 72px); 
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* Alineamos el contenido a la izquierda */
+  padding: 0 10%; /* Espacio a los lados */
+  
+  /* Imagen de fondo de alta calidad de comida gourmet */
+  background: url('https://images.unsplash.com/photo-1414235077428-338988a2e8c0?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+/* El degradado oscuro es VITAL para que las letras blancas se lean perfecto */
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* Degradado: de oscuro a la izquierda, a transparente a la derecha */
+  background: linear-gradient(90deg, rgba(17, 24, 39, 0.95) 0%, rgba(17, 24, 39, 0.6) 50%, rgba(17, 24, 39, 0.1) 100%);
+  z-index: 1;
+}
+
+/* Contenido Principal */
+.hero-content {
+  position: relative;
+  z-index: 2; /* Para que quede por encima de la imagen y el overlay */
+  max-width: 650px;
+  color: white;
+  
+  /* Animación de entrada suave */
+  animation: slideUpFade 1s cubic-bezier(0.25, 0.8, 0.25, 1) forwards;
+
+  .badge {
+    display: inline-block;
+    padding: 6px 14px;
+    background: rgba(96, 165, 250, 0.15); /* Azul sutil */
+    color: #60a5fa;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 24px;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+  }
+
+  .hero-title {
+    font-size: 64px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin: 0 0 24px 0;
+    letter-spacing: -1.5px;
+
+    .highlight {
+      color: #60a5fa; /* Resaltamos "Alta Cocina" con el azul de tu app */
+    }
+  }
+
+  .hero-subtitle {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #d1d5db; /* Gris claro, más suave a la vista que el blanco puro */
+    margin: 0 0 40px 0;
+    font-weight: 400;
+  }
+
+  /* Botones */
+  .hero-actions {
+    display: flex;
+    gap: 16px;
+
+    /* Estilos base para ambos botones */
+    button {
+      height: 54px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: 12px;
+      padding: 0 32px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      &:hover {
+        transform: translateY(-3px);
+      }
+    }
+
+    .btn-primary {
+      background-color: #60a5fa;
+      color: #111827;
+
+      &:hover {
+        box-shadow: 0 10px 20px rgba(96, 165, 250, 0.3);
+      }
+    }
+
+    .btn-secondary {
+      color: white;
+      border-color: rgba(255, 255, 255, 0.5);
+
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: white;
+      }
+    }
+  }
+}
+
+/* Animación de entrada */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive para pantallas móviles */
+@media (max-width: 768px) {
+  .hero-container {
+    padding: 0 24px;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .hero-overlay {
+    background: rgba(17, 24, 39, 0.85); /* Más oscuro en móvil para asegurar lectura */
+  }
+
+  .hero-content {
+    .hero-title {
+      font-size: 42px;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+    }
+
+    .hero-actions {
+      flex-direction: column;
+      
+      button {
+        width: 100%;
+      }
+    }
+  }
+}

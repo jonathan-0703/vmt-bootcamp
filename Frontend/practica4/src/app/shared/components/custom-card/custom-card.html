@@ -1,0 +1,54 @@
+<mat-card class="student-card">
+  <div class="card-image-wrapper" *ngIf="image">
+    <img [src]="image" alt="Imagen del estudiante" />
+    <div class="image-overlay"></div>
+  </div>
+
+  <mat-card-content>
+    <h3 class="card-title">
+      {{ title }}
+    </h3>
+    <p class="card-subtitle">
+      {{ subtitle }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions align="end" class="card-actions">
+    <button mat-icon-button class="btn-view" (click)="showDetails()" matTooltip="Ver detalle">
+      <mat-icon>visibility</mat-icon>
+    </button>
+
+    <button mat-icon-button class="btn-edit" (click)="editCard()" matTooltip="Editar">
+      <mat-icon>edit</mat-icon>
+    </button>
+
+    <button mat-icon-button class="btn-delete" (click)="deleteCard()" matTooltip="Eliminar">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>
+
+<ng-template #deleteDialogTemplate>
+  <div class="elegant-dialog-wrapper">
+    <div class="dialog-header">
+      <div class="warning-icon-bg">
+        <mat-icon color="warn">delete_outline</mat-icon>
+      </div>
+      <h2 mat-dialog-title>Confirmar Eliminación</h2>
+    </div>
+
+    <mat-dialog-content>
+      <p class="dialog-message">
+        ¿Estás seguro de que deseas eliminar a <strong>{{ title }}</strong
+        >? Esta acción es permanente y no se podrá deshacer.
+      </p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions align="end" class="dialog-actions">
+      <button mat-button class="btn-cancel" (click)="cancelDelete()">Cancelar</button>
+      <button mat-flat-button color="warn" class="btn-confirm" (click)="confirmDelete()">
+        Sí, eliminar
+      </button>
+    </mat-dialog-actions>
+  </div>
+</ng-template>

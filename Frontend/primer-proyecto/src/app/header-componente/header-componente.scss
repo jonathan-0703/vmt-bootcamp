@@ -1,0 +1,69 @@
+.main-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; // Esto separa los extremos
+  background: linear-gradient(90deg, #004080 0%, #007bff 100%);
+  color: white;
+  padding: 0 40px;
+  height: 80px;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: 'font family', sans-serif;
+
+  .banner-brand {
+    h1 {
+      margin: 0;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+  }
+
+  .banner-right-side {
+    display: flex;
+    align-items: center;
+    gap: 30px; // Espacio entre el menú y la foto de perfil
+
+    .banner-nav {
+      display: flex;
+      gap: 20px; // Espacio entre Inicio, Servicios, etc.
+
+      a {
+        color: rgba(255, 255, 255, 0.85);
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: white;
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .profile-section {
+      .profile-circle {
+        width: 45px;
+        height: 45px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: transform 0.2s;
+
+        &:hover {
+          transform: scale(1.1);
+        }
+
+        .placeholder-icon {
+          font-size: 20px;
+        }
+      }
+    }
+  }
+}

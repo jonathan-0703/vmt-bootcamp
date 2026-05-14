@@ -1,0 +1,62 @@
+<div class="header">
+  <h2>CHEFS</h2>
+
+  <button mat-flat-button color="primary" (click)="openCreateModal()">+ Crear Chefs</button>
+</div>
+
+<div class="chefs-container">
+  <app-custom-card
+    *ngFor="let chef of chefs()"
+    [id]="chef.id"
+    [title]="chef.name"
+    [subtitle]="chef.country + ' - ' + chef.city"
+    (details)="loadChefDetails($event)"
+    (edit)="openEditModal(chef)"
+    (delete)="deleteChef($event)"
+  >
+  </app-custom-card>
+</div>
+
+<div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button mat-icon-button class="close-btn" (click)="closeModal()">
+      <mat-icon> close </mat-icon>
+    </button>
+
+    <div class="modal-body" *ngIf="chefDetails()">
+      <p>
+        <b>ID:</b>
+        {{ chefDetails()?.id }}
+      </p>
+
+      <p>
+        <b>Name:</b>
+        {{ chefDetails()?.name }}
+      </p>
+
+      <p>
+        <b>Country:</b>
+        {{ chefDetails()?.country }}
+      </p>
+      <p>
+        <b>City:</b>
+        {{ chefDetails()?.city }}
+      </p>
+      <p>
+        <b>Gender:</b>
+        {{ chefDetails()?.gender }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<app-dynamic-form-modal
+  *ngIf="isFormOpen()"
+  [title]="formMode() === 'create' ? 'Nuevo Chef' : 'Editar Chef'"
+  [mode]="formMode()"
+  [fields]="chefFields"
+  [data]="selectedChef()"
+  (save)="saveChef($event)"
+  (close)="closeFormModal()"
+>
+</app-dynamic-form-modal>

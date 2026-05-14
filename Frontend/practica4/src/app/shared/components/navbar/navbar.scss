@@ -1,0 +1,138 @@
+.navbar {
+  height: 72px;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 40px;
+  
+ 
+  background: rgba(17, 24, 39, 0.85); 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  
+  color: white;
+  position: sticky; 
+  top: 0;
+  z-index: 1000;
+
+  /* Estilo del Logo */
+  .logo {
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    flex: 1; 
+    
+    .logo-accent {
+      color: #60a5fa; /* Un toque de color en la primera letra */
+    }
+  }
+
+
+  .links {
+    display: flex;
+    gap: 36px;
+    justify-content: center;
+    flex: 1;
+
+    a {
+      color: #d1d5db; /* Un gris claro, no blanco puro */
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 500;
+      position: relative;
+      padding: 8px 0;
+      transition: color 0.3s ease;
+
+      /* Línea animada en la parte inferior */
+      &::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: #60a5fa; /* Color de la línea */
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        transform: translateX(-50%);
+        border-radius: 2px;
+      }
+
+      &:hover {
+        color: #ffffff;
+        
+        &::after {
+          width: 100%; /* La línea crece al pasar el mouse */
+        }
+      }
+
+      /* Estilo cuando estás en esa página */
+      &.active {
+        color: #60a5fa;
+        font-weight: 600;
+
+        &::after {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+  .social-icons {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    flex: 1; /* Cierra el balance de las 3 columnas */
+
+    .social-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05); /* Botón oscuro translúcido */
+      color: #d1d5db;
+      transition: all 0.3s ease;
+      text-decoration: none;
+
+      svg {
+        width: 18px;
+        height: 18px;
+        transition: transform 0.3s ease;
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.15);
+        color: #ffffff;
+        transform: translateY(-3px); /* Pequeño salto hacia arriba */
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+
+        svg {
+          transform: scale(1.15); /* Crece el ícono ligeramente */
+        }
+      }
+
+      /* Colores opcionales para las marcas al pasar el cursor */
+      &.facebook:hover { color: #1877F2; }
+      &.instagram:hover { color: #E1306C; }
+      &.x-twitter:hover { color: #ffffff; }
+    }
+  }
+
+
+  @media (max-width: 800px) {
+    padding: 0 20px;
+    
+    .links {
+      display: none; 
+    }
+    
+    .logo {
+      flex: none;
+    }
+  }
+}

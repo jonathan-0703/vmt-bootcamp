@@ -1,0 +1,27 @@
+<mat-card class="student-card">
+  <img *ngIf="image" mat-card-image [src]="image" alt="image" />
+
+  <mat-card-content>
+    <h3>
+      {{ title }}
+    </h3>
+
+    <p>
+      {{ subtitle }}
+    </p>
+  </mat-card-content>
+
+  <mat-card-actions align="end">
+    <button mat-icon-button color="primary" (click)="showDetails()">
+      <mat-icon> visibility </mat-icon>
+    </button>
+
+    <button mat-icon-button color="accent" (click)="editCard()">
+      <mat-icon> edit </mat-icon>
+    </button>
+
+    <button mat-icon-button color="warn" (click)="deleteCard()">
+      <mat-icon> delete </mat-icon>
+    </button>
+  </mat-card-actions>
+</mat-card>

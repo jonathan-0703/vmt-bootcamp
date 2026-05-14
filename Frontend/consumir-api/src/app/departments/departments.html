@@ -1,0 +1,67 @@
+<div class="employees">
+  <h2 class="title">Departments</h2>
+
+  <div class="actions">
+    <button type="button" class="btn btn-primary" (click)="loadDepartments()">
+      Cargar Departments
+    </button>
+    <button type="button" class="btn btn-success" (click)="createDepartment()">
+      + Agregar Department
+    </button>
+  </div>
+
+  <div class="table-container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Descripción</th>
+          <th>Manager</th>
+          <th class="text-center">Acciones</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let dep of departments()">
+          <td>{{ dep.name }}</td>
+          <td>{{ dep.description }}</td>
+          <td>{{ dep.managerName }}</td>
+
+          <td class="actions-cell">
+            <div class="menu-container">
+              <!-- Botón 3 puntos -->
+              <button class="menu-btn" (click)="toggleMenu(dep.id)">⋮</button>
+
+              <!-- Menú -->
+              <div class="menu" *ngIf="openMenuId === dep.id">
+                <button type="button" (click)="loadDepartmentById(dep.id); closeMenu()">Ver</button>
+
+                <button type="button" (click)="updateDepartment(dep); closeMenu()">Editar</button>
+
+                <button type="button" (click)="deleteDepartment(dep); closeMenu()">Eliminar</button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- DETALLE -->
+
+  <div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <!-- Header -->
+      <div class="modal-header">
+        <button class="close-btn" (click)="closeModal()">✖</button>
+      </div>
+
+      <!-- Body -->
+      <div class="modal-body" *ngIf="department()">
+        <p><b>Nombre:</b> {{ department()?.name }}</p>
+        <p><b>Descripción:</b> {{ department()?.description }}</p>
+        <p><b>Manager:</b> {{ department()?.managerName }}</p>
+      </div>
+    </div>
+  </div>
+</div>

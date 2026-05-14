@@ -1,0 +1,69 @@
+<div class="header">
+  <h2>Courses</h2>
+
+  <button mat-flat-button color="primary" (click)="openCreateModal()">Crear Curso</button>
+</div>
+
+<!-- CARDS -->
+
+<div class="courses-container">
+  <app-custom-card
+    *ngFor="let course of courses()"
+    [id]="course.id"
+    [title]="course.name"
+    [subtitle]="course.level"
+    (details)="loadCourseDetails($event)"
+    (edit)="openEditModal(course)"
+    (delete)="deleteCourse($event)"
+  >
+  </app-custom-card>
+</div>
+
+<!-- DETAIL MODAL -->
+
+<div class="modal-backdrop" *ngIf="isModalOpen()" (click)="closeModal()">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <button mat-icon-button class="close-btn" (click)="closeModal()">
+      <mat-icon> close </mat-icon>
+    </button>
+
+    <div class="modal-body" *ngIf="courseDetails()">
+      <h2>
+        {{ courseDetails()?.name }}
+      </h2>
+
+      <p>
+        <b>Level:</b>
+        {{ courseDetails()?.level }}
+      </p>
+
+      <p>
+        <b>Description:</b>
+        {{ courseDetails()?.description }}
+      </p>
+
+      <p>
+        <b>Instructor:</b>
+        {{ courseDetails()?.instructor }}
+      </p>
+
+      <p>
+        <b>Created:</b>
+        {{ courseDetails()?.createdAt }}
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- FORM MODAL -->
+
+<app-dynamic-form-modal
+  *ngIf="isFormOpen()"
+  [title]="formMode() === 'create' ? 'Nuevo Curso' : 'Editar Curso'"
+  [mode]="formMode()"
+  [fields]="courseFields"
+  [data]="selectedCourse()"
+  (save)="saveCourse($event)"
+  (close)="closeFormModal()"
+>
+</app-dynamic-form-modal>
